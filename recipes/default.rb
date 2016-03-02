@@ -4,6 +4,6 @@
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
-include_recipe 'gocd::agent'
-
 node.override['gocd']['agent']['go_server_host'] = 'gocd.ukpds.org'
+
+include_recipe 'gocd::agent'
