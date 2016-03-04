@@ -7,7 +7,6 @@
 node.override['gocd']['agent']['go_server_host'] = 'gocd.ukpds.org'
 
 include_recipe 'gocd::agent'
-include_recipe 'chocolatey'
 
 # Construct the ".chef" directory.
 powershell_script 'write-to-interpolated-path' do
@@ -27,8 +26,7 @@ cookbook_file 'C:/chef/parliamentary-digital-service-validator.pem' do
   action :create_if_missing
 end
 
-# Install chef related software
+# Install the Chef Development Kit and Git.
+include_recipe 'chocolatey'
 chocolatey 'chefdk'
-
-# Install git as we need this to download repositories.
 chocolatey 'git'
