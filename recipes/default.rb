@@ -22,7 +22,7 @@ cookbook_file 'C:/.chef/knife.rb' do
   action :create_if_missing
 end
 
-cookbook_file 'C:/chef/parliamentary-digital-service-validator.pem' do
+cookbook_file 'C:/.chef/parliamentary-digital-service-validator.pem' do
   source 'parliamentary-digital-service-validator.pem'
   action :create_if_missing
 end
