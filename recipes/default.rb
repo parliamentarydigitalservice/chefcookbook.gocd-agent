@@ -27,6 +27,11 @@ cookbook_file 'C:/.chef/parliamentary-digital-service-validator.pem' do
   action :create_if_missing
 end
 
+cookbook_file 'C:/.chef/devadasv.pem' do
+  source 'devadasv.pem'
+  action :create_if_missing
+end
+
 # Install the Chef Development Kit and Git.
 include_recipe 'chocolatey'
 chocolatey 'chefdk'
