@@ -12,4 +12,10 @@ task style: [:foodcritic]
 desc 'Run all style checks and unit tests'
 task test: [:style, :spec]
 
-task default: :test
+task :upload_to_chef do
+  sh 'berks install; berks upload'
+end
+
+task default: ['test', 'integration:vagrant']
+task ci: ['style', 'upload_to_chef']
+task cloud: ['test', 'integration:amazon', 'upload_to_chef']
