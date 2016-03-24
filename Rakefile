@@ -16,6 +16,6 @@ task :upload_to_chef do
   sh 'berks install; berks upload'
 end
 
-task default: ['test', 'integration:vagrant']
+task default: ['test']
 task ci: ['style', 'upload_to_chef']
 task cloud: ['test', 'integration:amazon', 'upload_to_chef']
