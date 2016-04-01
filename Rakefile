@@ -13,7 +13,8 @@ desc 'Run all style checks and unit tests'
 task test: [:style, :spec]
 
 task :upload_to_chef do
-  sh 'berks install; berks upload'
+  sh 'berks install'
+  sh 'berks upload'
 end
 
 task default: ['test']
