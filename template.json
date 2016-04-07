@@ -1,0 +1,41 @@
+{
+  "variables": {
+    "version":           "{{env `VERSION`}}",
+    "aws_access_key":    "{{env `AWS_ACCESS_KEY`}}",
+    "aws_secret_key":    "{{env `AWS_SECRET_KEY`}}",
+    "name":              "gocd-agent",
+    "region":            "us-west-2",
+    "vpc_id":            "vpc-a8a350cc",
+    "subnet_id":         "subnet-41abb436",
+    "source_ami":        "ami-9abea4fb",
+    "instance_type":     "t2.micro",
+    "ssh_username":      "ubuntu"
+  },
+  "builders": [
+    {
+      "type":            "amazon-ebs",
+      "access_key":      "{{user `aws_access_key`}}",
+      "secret_key":      "{{user `aws_secret_key`}}",
+      "region":          "{{user `region`}}",
+      "vpc_id":          "{{user `vpc_id`}}",
+      "subnet_id":       "{{user `subnet_id`}}",
+      "source_ami":      "{{user `source_ami`}}",
+      "instance_type":   "{{user `instance_type`}}",
+      "ssh_username":    "ubuntu",
+      "ssh_private_ip":  "false",
+      "user_data_file":  "{{user `user_data_file`}}",
+      "ami_name":        "{{user `name`}} {{timestamp}}",
+      "ami_description": "{{user `name`}} AMI",
+      "run_tags": { "ami-create": "{{user `name`}}" },
+      "tags": { "name": "{{user `name`}}", "created": "{{timestamp}}" },
+      "associate_public_ip_address": true
+    }
+  ],
+  "provisioners": [
+    {
+      "type":               "chef-solo",
+      "cookbook_paths":      ["./berks-cookbooks"],
+      "run_list":           ["gocd-agent::default"]
+    }
+  ]
+}

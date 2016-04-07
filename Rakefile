@@ -17,6 +17,14 @@ task :upload_to_chef do
   sh 'berks upload'
 end
 
+task :packer, :source_ami_id do |_, args|
+  puts args[:source_ami_id]
+  sh 'rm -rf berks-cookbooks/*'
+  sh 'berks vendor'
+  sh 'packer validate template.json'
+  sh "packer build -var 'source_ami=#{args.source_ami_id}' template.json"
+end
+
 task default: ['test']
 task ci: ['style', 'upload_to_chef']
 task cloud: ['test', 'integration:amazon', 'upload_to_chef']
