@@ -21,6 +21,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.cpus = 2
   end
 
+  # Proxy server
+
+  if ENV['http_proxy']
+    config.proxy.http     = ENV['http_proxy']
+    config.proxy.no_proxy = "localhost,127.0.0.1"
+  end
+
+  if ENV['https_proxy']
+    config.proxy.https    = ENV['https_proxy']
+    config.proxy.no_proxy = "localhost,127.0.0.1"
+  end
+
   # Execute the cookbook
   config.vm.provision :chef_solo do |chef|
     chef.add_recipe 'gocd-agent::default'
