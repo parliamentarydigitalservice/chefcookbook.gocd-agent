@@ -1,0 +1,34 @@
+{
+  "name": "gocd-agent",
+  "description": "Installs/Configures template",
+  "long_description": "Installs/Configures template",
+  "maintainer": "Steven Wade",
+  "maintainer_email": "wades@parliament.uk",
+  "license": "all_rights",
+  "platforms": {
+  },
+  "dependencies": {
+    "gocd": ">= 0.0.0",
+    "powershell": ">= 0.0.0",
+    "chocolatey": ">= 0.0.0"
+  },
+  "recommendations": {
+  },
+  "suggestions": {
+  },
+  "conflicting": {
+  },
+  "providing": {
+  },
+  "replacing": {
+  },
+  "attributes": {
+  },
+  "groupings": {
+  },
+  "recipes": {
+  },
+  "version": "0.1.9",
+  "source_url": "",
+  "issues_url": ""
+}
